@@ -8,3 +8,27 @@
 
 @media(max-width:991.98px){.hero-photo{left:0;opacity:1;background-image:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.96) 54%,rgba(255,255,255,.55) 78%,rgba(255,255,255,.2) 100%),url("assets/hero-bg.png");background-size:cover;background-position:center}}
 @media(max-width:575.98px){.navbar-logo{width:230px;height:82px}.hero-photo{left:0;opacity:1;background-position:65% center}}
+
+.local-seal{padding:0;border:0;background:#fff;object-fit:cover;transform:none}
+
+/* Soft, shallow hero edge from the original mockup. */
+.hero{overflow:visible}
+body{overflow-x:hidden}
+.hero::before{content:none}
+.hero::after{content:none}
+.hero-curve{position:absolute;z-index:2;left:0;bottom:-1px;width:100%;height:112px;display:block;pointer-events:none}
+.hero-curve path{fill:#fff}
+.hero>.container{z-index:3}
+.local-seal{bottom:-48px;z-index:4;border:2px solid #36a39c}
+.services{z-index:1}
+.services{background:#fff url("assets/services-bg.png") center/100% 100% no-repeat}
+.services::before{content:none}
+.service-img{background-size:cover;background-position:center}
+.service-img.living{background-image:url("assets/chat-card-1.png")}
+.service-img.kitchen{background-image:url("assets/chat-card-2.png")}
+.service-img.moving{background-image:url("assets/chat-card-3.png")}
+.service-img.exterior{background-image:url("assets/chat-card-4.png")}
+.service-img.siding{background-image:url("assets/chat-card-5.png")}
+
+@media(max-width:991.98px){.hero-curve{height:90px}}
+@media(max-width:575.98px){.hero-curve{height:68px}}
