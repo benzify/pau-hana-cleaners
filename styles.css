@@ -54,3 +54,15 @@ body{overflow-x:hidden}
 .quote-carousel .carousel-control-prev:hover .quote-arrow,.quote-carousel .carousel-control-next:hover .quote-arrow{color:#f47b5e}
 
 @media(max-width:575.98px){.quote-carousel .carousel-control-prev{left:-34px}.quote-carousel .carousel-control-next{right:-34px}.quote-carousel .quote-arrow{font-size:38px}}
+
+.areas{position:relative;padding-inline:clamp(24px,4vw,72px);background:#fff url("assets/areas-serving-bg.png") 48% center/cover no-repeat}
+.areas::after{content:"";position:absolute;z-index:3;right:6px;bottom:-14px;width:170px;aspect-ratio:1;background:url("assets/flower-logo-2.png") center/contain no-repeat;pointer-events:none}
+.areas>.container{position:relative;z-index:2}
+.areas .island-map{visibility:hidden}
+.areas .estimate-card{width:100%;max-width:340px;margin-left:auto}
+
+@media(min-width:992px){.areas>.container{max-width:1500px}.areas .row{min-height:410px}.areas .estimate-card{margin-right:0}}
+@media(max-width:991.98px){.areas{background-position:center;background-size:auto 100%}.areas .island-map{display:none}.areas .estimate-card{margin-inline:auto}}
+@media(max-width:575.98px){.areas::after{right:-12px;bottom:-8px;width:118px}}
+
+footer{background:var(--deep) url("assets/footer-bg.png") center/cover no-repeat}
