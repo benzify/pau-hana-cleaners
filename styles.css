@@ -66,3 +66,8 @@ body{overflow-x:hidden}
 @media(max-width:575.98px){.areas::after{right:-12px;bottom:-8px;width:118px}}
 
 footer{background:var(--deep) url("assets/footer-bg.png") center/cover no-repeat}
+.footer-logo{display:block;width:min(250px,100%);height:auto}
+.footer-socials{display:flex;align-items:center;gap:16px;margin-top:14px}
+.footer-socials a{display:grid;width:30px;height:30px;place-items:center;color:#fff;font-size:18px;line-height:1;border:1px solid rgba(255,255,255,.5);border-radius:50%;transition:background-color .2s,color .2s,border-color .2s}
+.footer-socials a:hover{color:var(--deep);background:#fff;border-color:#fff}
+.feature-icon{display:block;width:58px;height:58px;object-fit:contain;margin:0 auto 12px}
