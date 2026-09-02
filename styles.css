@@ -71,3 +71,4 @@ footer{background:var(--deep) url("assets/footer-bg.png") center/cover no-repeat
 .footer-socials a{display:grid;width:30px;height:30px;place-items:center;color:#fff;font-size:18px;line-height:1;border:1px solid rgba(255,255,255,.5);border-radius:50%;transition:background-color .2s,color .2s,border-color .2s}
 .footer-socials a:hover{color:var(--deep);background:#fff;border-color:#fff}
 .feature-icon{display:block;width:58px;height:58px;object-fit:contain;margin:0 auto 12px}
+.service-body .service-icon{position:absolute;top:-27px;left:18px;width:54px;height:54px;padding:8px;border:1px solid #ccd6d3;border-radius:50%;background:#fff;object-fit:contain}
