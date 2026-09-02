@@ -72,3 +72,15 @@ footer{background:var(--deep) url("assets/footer-bg.png") center/cover no-repeat
 .footer-socials a:hover{color:var(--deep);background:#fff;border-color:#fff}
 .feature-icon{display:block;width:58px;height:58px;object-fit:contain;margin:0 auto 12px}
 .service-body .service-icon{position:absolute;top:-27px;left:18px;width:54px;height:54px;padding:8px;border:1px solid #ccd6d3;border-radius:50%;background:#fff;object-fit:contain}
+
+footer>.container{max-width:1500px}
+footer .row{padding-top:64px!important;padding-bottom:56px!important}
+footer h3{font-size:.88rem;letter-spacing:.1em;margin-bottom:14px}
+footer a{font-size:.9rem;line-height:2}
+footer p{font-size:.9rem;line-height:1.8}
+.footer-logo{width:min(285px,100%)}
+.footer-socials{width:min(285px,100%);justify-content:center;gap:18px;margin-top:18px}
+.footer-socials a{width:34px;height:34px;font-size:19px}
+.copyright{font-size:.82rem}
+
+@media(max-width:991.98px){footer>.container{max-width:900px}}
