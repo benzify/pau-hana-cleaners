@@ -29,6 +29,28 @@ body{overflow-x:hidden}
 .service-img.moving{background-image:url("assets/chat-card-3.png")}
 .service-img.exterior{background-image:url("assets/chat-card-4.png")}
 .service-img.siding{background-image:url("assets/chat-card-5.png")}
+.quote-carousel{margin-top:18px;padding:0 52px 34px 0;min-height:190px}
+.quote-carousel .carousel-item{min-height:145px}
+.quote-carousel .carousel-control-prev,.quote-carousel .carousel-control-next{top:auto;bottom:18px;width:32px;height:32px;border:1px solid rgba(255,255,255,.65);border-radius:50%;opacity:1}
+.quote-carousel .carousel-control-prev{left:auto;right:42px}
+.quote-carousel .carousel-control-next{right:0}
+.quote-carousel .carousel-control-prev-icon,.quote-carousel .carousel-control-next-icon{width:14px;height:14px}
+.quote-carousel .carousel-indicators{right:auto;bottom:18px;left:0;justify-content:flex-start;margin:0}
+.quote-carousel .carousel-indicators [data-bs-target]{width:24px;height:2px;margin:0 6px 0 0}
+.quote-panel{background:var(--deep) url("assets/bg-half-1.png") center/cover no-repeat}
+.beach-photo{background-image:url("assets/bg-half-2.png");background-size:cover;background-position:center}
+.quote-panel .quote-inner{width:80%;max-width:none;padding:65px 0;margin-inline:auto}
+.quote-panel .quote-carousel{width:100%}
+
+@media(max-width:767.98px){.quote-panel .quote-inner{width:88%;padding:54px 0}}
 
 @media(max-width:991.98px){.hero-curve{height:90px}}
 @media(max-width:575.98px){.hero-curve{height:68px}}
+
+.quote-carousel .carousel-control-prev,.quote-carousel .carousel-control-next{top:50%;bottom:auto;width:34px;height:54px;border:0;border-radius:0;transform:translateY(-50%);background:transparent;opacity:1}
+.quote-carousel .carousel-control-prev{left:-52px;right:auto}
+.quote-carousel .carousel-control-next{right:-52px}
+.quote-carousel .quote-arrow{display:block;color:#fff;font-family:Arial,sans-serif;font-size:44px;font-weight:200;line-height:1}
+.quote-carousel .carousel-control-prev:hover .quote-arrow,.quote-carousel .carousel-control-next:hover .quote-arrow{color:#f47b5e}
+
+@media(max-width:575.98px){.quote-carousel .carousel-control-prev{left:-34px}.quote-carousel .carousel-control-next{right:-34px}.quote-carousel .quote-arrow{font-size:38px}}
