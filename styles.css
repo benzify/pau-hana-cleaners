@@ -143,3 +143,24 @@ footer p{font-size:.9rem;line-height:1.8}
 .moving-cta{background:var(--mint)}
 .moving-cta h2{max-width:780px;margin-inline:auto}
 @media(max-width:575.98px){.move-cleaning-page .hero h1{font-size:clamp(2rem,8vw,2.8rem)}}
+
+/* Pressure Washing service page. */
+.pressure-washing-page{--hero-image:url("assets/chat-card-4.png")}
+.pressure-washing-page .hero h1{font-size:clamp(2.4rem,3.8vw,3.8rem);line-height:1.08}
+.pressure-washing-page .lead-copy{max-width:530px}
+.pressure-washing-page .quote-inner>p:last-child{line-height:1.8}
+.pressure-context{background:var(--cream)}
+.pressure-context .container,.pressure-faq .container{max-width:960px}
+.pressure-context h2,.pressure-faq h2{margin-bottom:28px}
+.pressure-context p:not(.eyebrow),.pressure-benefit p{line-height:1.8;color:#455654}
+.pressure-benefits,.pressure-cta{background:var(--mint)}
+.pressure-benefit{height:100%;padding:24px;background:#fff;border:1px solid #d9e5e1;border-radius:3px}
+.pressure-benefit h3{font-size:1.35rem;line-height:1.3;margin-bottom:16px}
+.pressure-benefit p{font-size:.9rem;margin:0}
+.pressure-faq{background:#fff}
+.pressure-faq details{border-bottom:1px solid #c9ddda;padding:20px 0}
+.pressure-faq summary{font-weight:700;color:var(--deep);cursor:pointer;padding-right:12px}
+.pressure-faq details p{margin:16px 0 0;line-height:1.8;color:#455654}
+.pressure-faq summary:focus-visible{outline:2px solid var(--teal);outline-offset:5px}
+.pressure-cta h2{max-width:780px;margin-inline:auto}
+@media(max-width:575.98px){.pressure-washing-page .hero h1{font-size:clamp(2rem,8vw,2.8rem)}}
