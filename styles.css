@@ -125,3 +125,21 @@ footer p{font-size:.9rem;line-height:1.8}
 .hero-testimonial{max-width:480px;border-top:1px solid #d9e5e1;padding-top:16px;color:#303d3c;font-size:.85rem;line-height:1.6}
 .hero-testimonial blockquote{margin-bottom:4px}
 @media(max-width:575.98px){.deep-cleaning-page .hero h1{font-size:clamp(1.8rem,7.4vw,2.65rem)}}
+
+/* Move-in / move-out service page. */
+.move-cleaning-page{--hero-image:url("assets/chat-card-3.png")}
+.move-cleaning-page .hero h1{font-size:clamp(2.4rem,3.8vw,3.8rem);line-height:1.08}
+.move-cleaning-page .lead-copy{max-width:530px}
+.move-cleaning-page .quote-inner>p:last-child{line-height:1.8}
+.moving-context{background:var(--cream)}
+.moving-context .container,.moving-faq .container{max-width:960px}
+.moving-context h2,.moving-faq h2{margin-bottom:28px}
+.moving-context p:not(.eyebrow){line-height:1.8;color:#455654}
+.moving-faq{background:#fff}
+.moving-faq details{border-bottom:1px solid #c9ddda;padding:20px 0}
+.moving-faq summary{font-weight:700;color:var(--deep);cursor:pointer;padding-right:12px}
+.moving-faq details p{margin:16px 0 0;line-height:1.8;color:#455654}
+.moving-faq summary:focus-visible{outline:2px solid var(--teal);outline-offset:5px}
+.moving-cta{background:var(--mint)}
+.moving-cta h2{max-width:780px;margin-inline:auto}
+@media(max-width:575.98px){.move-cleaning-page .hero h1{font-size:clamp(2rem,8vw,2.8rem)}}
