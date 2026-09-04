@@ -20,7 +20,7 @@ document.querySelectorAll('.navbar .dropdown').forEach(dropdown => {
 });
 
 // Service pages retain their page-level navigation state while scrolling.
-if (!document.body.classList.contains('standard-cleaning-page')) {
+if (!document.body.classList.contains('service-detail-page')) {
   const sections = [...document.querySelectorAll('header[id], main section[id]')];
   const navLinks = [...document.querySelectorAll('.navbar-nav .nav-link')];
   const updateActiveNavigation = () => {
