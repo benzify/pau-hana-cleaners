@@ -164,3 +164,25 @@ footer p{font-size:.9rem;line-height:1.8}
 .pressure-faq summary:focus-visible{outline:2px solid var(--teal);outline-offset:5px}
 .pressure-cta h2{max-width:780px;margin-inline:auto}
 @media(max-width:575.98px){.pressure-washing-page .hero h1{font-size:clamp(2rem,8vw,2.8rem)}}
+
+/* Soft Washing service page. */
+.soft-washing-page{--hero-image:url("assets/chat-card-5.png")}
+.soft-washing-page .hero h1{font-size:clamp(2.4rem,3.8vw,3.8rem);line-height:1.08}
+.soft-washing-page .lead-copy{max-width:530px}
+.soft-washing-page .quote-inner>p:last-child{line-height:1.8}
+.soft-context,.soft-method{background:var(--cream)}
+.soft-context .container,.soft-faq .container,.soft-comparison .container{max-width:960px}
+.soft-context h2,.soft-faq h2,.soft-method h2,.soft-comparison h2{margin-bottom:28px}
+.soft-intro{max-width:850px;margin-bottom:28px}
+.soft-context p:not(.eyebrow),.soft-intro p,.soft-benefit p,.soft-comparison p{line-height:1.8;color:#455654}
+.soft-benefits,.soft-cta,.soft-comparison{background:var(--mint)}
+.soft-benefit{height:100%;padding:24px;background:#fff;border:1px solid #d9e5e1;border-radius:3px}
+.soft-benefit h3{font-size:1.35rem;line-height:1.3;margin-bottom:16px}
+.soft-benefit p{font-size:.9rem;margin:0}
+.soft-faq{background:#fff}
+.soft-faq details{border-bottom:1px solid #c9ddda;padding:20px 0}
+.soft-faq summary{font-weight:700;color:var(--deep);cursor:pointer;padding-right:12px}
+.soft-faq details p{margin:16px 0 0;line-height:1.8;color:#455654}
+.soft-faq summary:focus-visible{outline:2px solid var(--teal);outline-offset:5px}
+.soft-cta h2{max-width:780px;margin-inline:auto}
+@media(max-width:575.98px){.soft-washing-page .hero h1{font-size:clamp(2rem,8vw,2.8rem)}}
