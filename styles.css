@@ -4,9 +4,9 @@
 
 .utility-bar,.utility-bar *{font-size:12px}
 .navbar-logo{display:block;width:280px;height:100px;object-fit:cover;object-position:center}
-.hero-photo{inset:0;background-image:linear-gradient(90deg,#fff 0%,#fff 38%,rgba(255,255,255,.98) 43%,rgba(255,255,255,.86) 50%,rgba(255,255,255,.32) 62%,transparent 72%),url("assets/hero-bg.png");background-size:cover;background-position:center right}
+.hero-photo{inset:0;background-image:linear-gradient(90deg,#fff 0%,#fff 38%,rgba(255,255,255,.98) 43%,rgba(255,255,255,.86) 50%,rgba(255,255,255,.32) 62%,transparent 72%),var(--hero-image, url("assets/hero-bg.png"));background-size:cover;background-position:center right}
 
-@media(max-width:991.98px){.hero-photo{left:0;opacity:1;background-image:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.96) 54%,rgba(255,255,255,.55) 78%,rgba(255,255,255,.2) 100%),url("assets/hero-bg.png");background-size:cover;background-position:center}}
+@media(max-width:991.98px){.hero-photo{left:0;opacity:1;background-image:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.96) 54%,rgba(255,255,255,.55) 78%,rgba(255,255,255,.2) 100%),var(--hero-image, url("assets/hero-bg.png"));background-size:cover;background-position:center}}
 @media(max-width:575.98px){.navbar-logo{width:230px;height:82px}.hero-photo{left:0;opacity:1;background-position:65% center}}
 
 .local-seal{padding:0;border:0;background:#fff;object-fit:cover;transform:none}
@@ -84,3 +84,34 @@ footer p{font-size:.9rem;line-height:1.8}
 .copyright{font-size:.82rem}
 
 @media(max-width:991.98px){footer>.container{max-width:900px}}
+
+/* Shared service navigation. */
+.navbar .dropdown-menu{border-color:#d9e5e1;border-radius:2px;box-shadow:0 8px 24px rgba(0,63,59,.1)}
+.navbar .dropdown-item{font-size:.85rem;padding:.65rem 1rem;color:var(--deep)}
+.navbar .dropdown-item:hover,.navbar .dropdown-item:focus{background:var(--mint)}
+.navbar .dropdown-item.active{background:var(--teal);color:#fff}
+.service-card[id],section[id],.estimate-card[id]{scroll-margin-top:150px}
+
+/* Standard Cleaning detail page. */
+.standard-cleaning-page{--hero-image:url("assets/services-hero.png")}
+.standard-cleaning-page .hero h1{font-size:clamp(2.8rem,4.5vw,4.5rem);line-height:1}
+.standard-cleaning-page .hero-copy{padding-bottom:85px!important}
+.standard-cleaning-page .lead-copy{line-height:1.5}
+.standard-cleaning-page .standard-inclusions{padding-top:70px;padding-bottom:55px}
+.cleaning-checklist{height:100%;padding:28px 24px 30px;background:#fff;border:1px solid #e9ece8;border-radius:3px;box-shadow:0 4px 14px rgba(0,40,36,.09)}
+.cleaning-checklist h3{font-family:var(--sans);font-size:1.05rem;line-height:1.4;font-weight:700;text-transform:uppercase;margin-bottom:18px}
+.cleaning-checklist ul{list-style:none;padding:0;margin:0}
+.cleaning-checklist li{display:flex;align-items:flex-start;gap:12px;margin-top:12px;line-height:1.5;font-size:.9rem;color:#303d3c}
+.cleaning-checklist li i{flex:0 0 22px;font-size:1.25rem;line-height:1.2;color:#7caaa4}
+.estimate-steps-panel{background:#fff;padding:48px 30px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.estimate-steps-panel h2{font-size:clamp(2rem,3vw,3rem);line-height:1.15;margin-bottom:28px}
+.estimate-steps{display:flex;list-style:none;padding:0;margin:0 0 24px;width:100%;gap:20px}
+.estimate-steps li{flex:1;min-width:0;position:relative}
+.estimate-steps li:not(:last-child)::after{content:'⟶';position:absolute;top:12px;right:-22px;color:#a5c4bf;font-size:1.7rem}
+.estimate-steps i,.estimate-steps img{display:block;width:56px;height:56px;margin:0 auto 20px;font-size:3rem;line-height:56px;color:#477b76;object-fit:contain}
+.estimate-steps h3{font-family:var(--sans);font-size:.85rem;font-weight:700;text-transform:uppercase;line-height:1.4}
+.estimate-steps p{font-size:.85rem;line-height:1.5;margin:0;color:#303d3c}
+@media(max-width:991.98px){.navbar .dropdown-menu{box-shadow:none}.standard-cleaning-page .hero-copy{max-width:620px}.standard-cleaning-page .standard-inclusions{padding-top:58px}.estimate-steps-panel{padding:48px 24px}}
+@media(max-width:575.98px){.standard-cleaning-page .hero h1{font-size:clamp(2.5rem,10vw,3.2rem)}.cleaning-checklist{padding:24px 20px}.estimate-steps{flex-direction:column;gap:28px}.estimate-steps li:not(:last-child)::after{content:none}.estimate-steps i,.estimate-steps img{margin-bottom:12px}.navbar .dropdown-item{white-space:normal}}
+@media(max-width:991.98px){.standard-cleaning-page .areas{background-image:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),url("assets/areas-serving-bg.png")}.standard-cleaning-page footer a{overflow-wrap:anywhere}}
+@media(max-width:575.98px){.standard-cleaning-page .quote-panel .quote-inner{width:80%}.standard-cleaning-page .quote-carousel .carousel-control-prev{left:-30px}.standard-cleaning-page .quote-carousel .carousel-control-next{right:-30px}}
