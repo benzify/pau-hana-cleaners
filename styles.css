@@ -62,7 +62,7 @@ body{overflow-x:hidden}
 .areas .estimate-card{width:100%;max-width:340px;margin-left:auto}
 
 @media(min-width:992px){.areas>.container{max-width:1500px}.areas .row{min-height:410px}.areas .estimate-card{margin-right:0}}
-@media(max-width:991.98px){.areas{background-position:center;background-size:auto 100%}.areas .island-map{display:none}.areas .estimate-card{margin-inline:auto}}
+@media(max-width:991.98px){.areas{background-image:none}.areas .island-map{display:block;visibility:visible;width:min(100%,560px);height:auto;aspect-ratio:4/3;margin-inline:auto;background:url("assets/areas-serving-bg-2.png") center/300% auto no-repeat;clip-path:none;filter:none}.areas .island-map span{display:none}.areas .estimate-card{margin-inline:auto}}
 @media(max-width:575.98px){.areas::after{right:-12px;bottom:-8px;width:118px}}
 
 footer{background:var(--deep) url("assets/footer-bg.png") center/cover no-repeat}
@@ -84,6 +84,7 @@ footer p{font-size:.9rem;line-height:1.8}
 .copyright{font-size:.82rem}
 
 @media(max-width:991.98px){footer>.container{max-width:900px}}
+@media(max-width:575.98px){.footer-socials{justify-content:flex-start}}
 
 /* Shared service navigation. */
 .navbar .dropdown-menu{border-color:#d9e5e1;border-radius:2px;box-shadow:0 8px 24px rgba(0,63,59,.1)}
@@ -115,7 +116,7 @@ footer p{font-size:.9rem;line-height:1.8}
 .estimate-steps p{font-size:.85rem;line-height:1.5;margin:0;color:#303d3c}
 @media(max-width:991.98px){.navbar .dropdown-menu{box-shadow:none}.service-detail-page .hero-copy{max-width:620px}.service-detail-page .service-inclusions{padding-top:58px}.estimate-steps-panel{padding:48px 24px}}
 @media(max-width:575.98px){.service-detail-page .hero h1{font-size:clamp(2.5rem,10vw,3.2rem)}.cleaning-checklist{padding:24px 20px}.estimate-steps{flex-direction:column;gap:28px}.estimate-steps li:not(:last-child)::after{content:none}.estimate-steps i,.estimate-steps img{margin-bottom:12px}.navbar .dropdown-item{white-space:normal}}
-@media(max-width:991.98px){.service-detail-page .areas{background-image:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),url("assets/areas-serving-bg.png")}.service-detail-page footer a{overflow-wrap:anywhere}}
+@media(max-width:991.98px){.service-detail-page .areas{background-image:none}.service-detail-page footer a{overflow-wrap:anywhere}}
 @media(max-width:575.98px){.service-detail-page .quote-panel .quote-inner{width:80%}.service-detail-page .quote-carousel .carousel-control-prev{left:-30px}.service-detail-page .quote-carousel .carousel-control-next{right:-30px}}
 
 /* Deep Cleaning hero image and headline layout. */
