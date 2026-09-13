@@ -1,0 +1,20 @@
+# Repo-only material: never publish repository metadata, tooling, or references.
+.git/
+.github/
+.gitignore
+.deployignore
+.vscode/
+README.md
+.DS_Store
+._*
+*.log
+/assets/reference.png
+
+# Server-managed paths: exclusions also protect the receiving side from --delete.
+# Never use --delete-excluded. Removing .well-known/ can break ACME / Let's
+# Encrypt renewal and take the site off HTTPS, even if it is absent today.
+.well-known/
+cgi-bin/
+.ftpquota
+error_log
+*.error_log

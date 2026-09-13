@@ -1,0 +1,118 @@
+# A push: branches: [main] trigger can be added once a few runs have gone cleanly.
+name: Deploy to Hostinger
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview changes without uploading or deleting files
+        type: boolean
+        default: true
+      delete_orphans:
+        description: Remove remote files absent from the repo (including default.php)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-pauhanacleaners-com
+  cancel-in-progress: false
+
+env:
+  DOMAIN: pauhanacleaners.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      DRY_RUN: ${{ inputs.dry_run }}
+      DELETE_ORPHANS: ${{ inputs.delete_orphans }}
+    steps:
+      # The dispatch dropdown permits feature branches; only main may reach production.
+      - name: Refuse non-main branches
+        if: github.ref_name != 'main' || github.ref_type != 'branch'
+        run: |
+          echo "::error::Production deployment requires the main branch."
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Show what will happen
+        run: |
+          printf 'Ref: %s\nCommit: %s\nDomain: %s\nDry run: %s\nDelete orphans: %s\n' \
+            "$GITHUB_REF" "$GITHUB_SHA" "$DOMAIN" "$DRY_RUN" "$DELETE_ORPHANS"
+
+      - name: Configure SSH
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in SSH_HOST SSH_PORT SSH_USER SSH_PRIVATE_KEY; do
+            if [[ -z "${!name}" ]]; then
+              echo "::error::Missing required secret: $name"
+              exit 1
+            fi
+          done
+          [[ "$SSH_PORT" =~ ^[0-9]+$ ]]
+          [[ "$SSH_USER" =~ ^[a-zA-Z0-9_-]+$ ]]
+          [[ "$SSH_HOST" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]*$ ]]
+          install -d -m 700 "$HOME/.ssh"
+          umask 077
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/deploy_key"
+          chmod 600 "$HOME/.ssh/deploy_key"
+          ssh-keyscan -T 15 -p "$SSH_PORT" -H "$SSH_HOST" >> "$HOME/.ssh/known_hosts"
+          test -s "$HOME/.ssh/known_hosts"
+          printf 'REMOTE_ROOT=/home/%s/domains/%s/public_html\n' "$SSH_USER" "$DOMAIN" >> "$GITHUB_ENV"
+
+      - name: Verify live web root
+        # SSH home is not the web root. A wrong path can report success while
+        # leaving production untouched; require the existing directory and entry point.
+        run: |
+          ssh -p "$SSH_PORT" -i "$HOME/.ssh/deploy_key" \
+            -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 \
+            -o StrictHostKeyChecking=yes "$SSH_USER@$SSH_HOST" \
+            "test -d '$REMOTE_ROOT' && test -f '$REMOTE_ROOT/index.html'" || {
+              echo "::error::Cannot verify the live web root and index.html; refusing deployment."
+              exit 1
+            }
+
+      - name: Sync site
+        id: sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Deliberately not -a: shared hosting cannot preserve owner/group/perms.
+          # Checkout resets mtimes; --checksum avoids re-uploading unchanged content.
+          flags=(-rltzi --checksum --human-readable --exclude-from=.deployignore)
+          if [[ "$DRY_RUN" == true ]]; then flags+=(--dry-run); fi
+          if [[ "$DELETE_ORPHANS" == true ]]; then flags+=(--delete); fi
+          # README.md is excluded/protected; default.php is an orphan and will be deleted.
+          transport="ssh -p $SSH_PORT -i $HOME/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=yes"
+          rsync "${flags[@]}" -e "$transport" ./ "$SSH_USER@$SSH_HOST:$REMOTE_ROOT/"
+
+      - name: Summary
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          SYNC_OUTCOME: ${{ steps.sync.outcome }}
+        run: |
+          {
+            if [[ "$JOB_STATUS" == success && "$SYNC_OUTCOME" == success ]]; then
+              if [[ "$DRY_RUN" == true ]]; then
+                echo 'DRY RUN — nothing was uploaded'
+              else
+                printf 'Deployed `%s` @ `%s`\n' "$GITHUB_REF" "$GITHUB_SHA"
+              fi
+            else
+              printf 'Deployment did not complete: %s (sync: %s).\n' "$JOB_STATUS" "$SYNC_OUTCOME"
+              echo 'Inspect the logs; a failed or cancelled real sync may have made partial changes.'
+            fi
+            printf '\nDomain: %s\n\nDry run: %s\n\nDelete orphans: %s\n' "$DOMAIN" "$DRY_RUN" "$DELETE_ORPHANS"
+          } >> "$GITHUB_STEP_SUMMARY"
