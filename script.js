@@ -38,6 +38,50 @@ if (!document.body.classList.contains('service-detail-page')) {
 const estimateTriggers = [...document.querySelectorAll('[data-estimate-trigger]')];
 
 if (estimateTriggers.length) {
+  // Replace this public key after registering the production domain in Google reCAPTCHA.
+  const RECAPTCHA_SITE_KEY = 'YOUR_RECAPTCHA_SITE_KEY';
+  let recaptchaLoadPromise;
+
+  const loadRecaptcha = () => {
+    if (window.grecaptcha) return Promise.resolve(window.grecaptcha);
+    if (recaptchaLoadPromise) return recaptchaLoadPromise;
+
+    recaptchaLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(RECAPTCHA_SITE_KEY)}`;
+      script.async = true;
+      script.defer = true;
+      script.dataset.estimateRecaptcha = '';
+      script.addEventListener('load', () => resolve(window.grecaptcha), { once: true });
+      script.addEventListener('error', () => {
+        script.remove();
+        recaptchaLoadPromise = undefined;
+        reject(new Error('We couldn’t load spam protection. Please check your connection and try again.'));
+      }, { once: true });
+      document.head.append(script);
+    });
+
+    return recaptchaLoadPromise;
+  };
+
+  const getRecaptchaToken = async () => {
+    if (RECAPTCHA_SITE_KEY === 'YOUR_RECAPTCHA_SITE_KEY') {
+      throw new Error('This form still needs its Google reCAPTCHA site key before it can send requests.');
+    }
+
+    const recaptcha = await loadRecaptcha();
+    if (!recaptcha) {
+      throw new Error('We couldn’t load spam protection. Please check your connection and try again.');
+    }
+
+    try {
+      await new Promise(resolve => recaptcha.ready(resolve));
+      return await recaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'estimate_submit' });
+    } catch (error) {
+      throw new Error('We couldn’t verify this request. Please try again.');
+    }
+  };
+
   const estimateModalMarkup = `
     <div class="modal fade estimate-modal" id="estimateModal" tabindex="-1" aria-labelledby="estimateModalLabel" aria-describedby="estimateModalDescription" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -245,19 +289,24 @@ if (estimateTriggers.length) {
     formError.hidden = true;
 
     try {
+      const recaptchaToken = await getRecaptchaToken();
+      const formData = new FormData(form);
+      formData.set('g-recaptcha-response', recaptchaToken);
       const response = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: formData,
         headers: { Accept: 'application/json' }
       });
 
-      if (!response.ok) throw new Error('Formspree rejected the request.');
+      if (!response.ok) {
+        throw new Error('We couldn’t verify or send your request. Please try again.');
+      }
 
       form.hidden = true;
       successPanel.hidden = false;
       successPanel.focus();
     } catch (error) {
-      formError.textContent = 'We couldn’t send your request. Please check your connection and try again, or call (808) 444-3231.';
+      formError.textContent = error.message || 'We couldn’t send your request. Please check your connection and try again, or call (808) 444-3231.';
       formError.hidden = false;
       formError.focus();
       submitButton.disabled = false;
