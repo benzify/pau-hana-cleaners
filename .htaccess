@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# Redirect direct requests for the physical homepage to the site root.
+RewriteCond %{THE_REQUEST} \s/+index\.html(?:[\s?]) [NC]
+RewriteRule ^index\.html$ / [R=301,L,NE]
+
+# Redirect direct requests for root-level HTML pages to extension-free URLs.
+# THE_REQUEST prevents this rule from firing after the internal rewrite below.
+RewriteCond %{THE_REQUEST} \s/+([^/?\s]+)\.html(?:[\s?]) [NC]
+RewriteRule ^([^/]+)\.html$ /$1 [R=301,L,NE]
+
+# Canonical clean page URLs do not end in a slash.
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([^/]+)/$ /$1 [R=301,L,NE]
+
+# Serve existing root-level HTML pages through their extension-free paths.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
