@@ -193,4 +193,15 @@ footer p{font-size:.9rem;line-height:1.8}
 .soft-faq details p{margin:16px 0 0;line-height:1.8;color:#455654}
 .soft-faq summary:focus-visible{outline:2px solid var(--teal);outline-offset:5px}
 .soft-cta h2{max-width:780px;margin-inline:auto}
+
+/* Commercial cleaning page and homepage service card. */
+.service-img.commercial{background-image:url("assets/commercial-cleaning-hero.png");background-size:cover;background-position:center 45%}
+.service-body>.bi-buildings{color:var(--teal)}
+.commercial-cleaning-page{--hero-image:url("assets/commercial-cleaning-hero.png")}
+.commercial-cleaning-page .hero h1{font-size:clamp(2.5rem,4vw,4rem);line-height:1.04}
+.commercial-cleaning-page .lead-copy{max-width:510px}
+.commercial-inclusions .cleaning-checklist{min-height:100%}
+.commercial-scope-note{max-width:960px;margin-inline:auto;padding:20px 24px;border-left:4px solid var(--coral);background:var(--mint);line-height:1.7}
+.commercial-estimate-process .quote-inner>p:last-child{line-height:1.8;max-width:480px}
+@media(max-width:575.98px){.commercial-cleaning-page .hero h1{font-size:clamp(2.2rem,10vw,3rem)}.commercial-scope-note{padding:18px 20px}.commercial-inclusions .cleaning-checklist{min-height:0}}
 @media(max-width:575.98px){.soft-washing-page .hero h1{font-size:clamp(2rem,8vw,2.8rem)}}

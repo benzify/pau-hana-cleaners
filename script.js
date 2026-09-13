@@ -51,7 +51,7 @@ if (estimateTriggers.length) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close estimate form"></button>
           </div>
           <div class="modal-body">
-            <form id="estimateForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <form id="estimateForm" action="https://formspree.io/f/myeyqnzr" method="POST" novalidate>
               <fieldset class="estimate-type-fieldset mb-4">
                 <legend>What type of cleaning do you need?<span aria-hidden="true">*</span></legend>
                 <div class="estimate-type-options">
@@ -95,6 +95,7 @@ if (estimateTriggers.length) {
                     <option value="Standard Cleaning">Standard Cleaning</option>
                     <option value="Deep Cleaning">Deep Cleaning</option>
                     <option value="Move-In / Move-Out Cleaning">Move-In / Move-Out Cleaning</option>
+                    <option value="Commercial Cleaning">Commercial Cleaning</option>
                     <option value="Pressure Washing">Pressure Washing</option>
                     <option value="Soft Washing">Soft Washing</option>
                   </select>
@@ -197,6 +198,18 @@ if (estimateTriggers.length) {
     updatePropertyFields();
   };
 
+  const applyTriggerDefaults = trigger => {
+    const { cleaningType, service } = trigger.dataset;
+    if (cleaningType) {
+      const typeInput = [...form.elements.cleaning_type].find(input => input.value === cleaningType);
+      if (typeInput) typeInput.checked = true;
+    }
+    if (service && [...form.elements.service.options].some(option => option.value === service)) {
+      form.elements.service.value = service;
+    }
+    updatePropertyFields();
+  };
+
   [...form.elements.cleaning_type].forEach(input => input.addEventListener('change', updatePropertyFields));
   nameField.addEventListener('input', () => {
     nameField.value = nameField.value.replace(/[0-9]/g, '');
@@ -209,6 +222,7 @@ if (estimateTriggers.length) {
     trigger.addEventListener('click', event => {
       event.preventDefault();
       modal.show(trigger);
+      applyTriggerDefaults(trigger);
     });
   });
 
