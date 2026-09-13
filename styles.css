@@ -79,12 +79,14 @@ footer h3{font-size:.88rem;letter-spacing:.1em;margin-bottom:14px}
 footer a{font-size:.9rem;line-height:2}
 footer p{font-size:.9rem;line-height:1.8}
 .footer-logo{width:min(285px,100%)}
+.footer-logo--seal{width:min(135px,100%)}
+.footer-logo--seal~.footer-socials{width:min(190px,100%)}
 .footer-socials{width:min(285px,100%);justify-content:center;gap:18px;margin-top:18px}
 .footer-socials a{width:34px;height:34px;font-size:19px}
 .copyright{font-size:.82rem}
 
 @media(max-width:991.98px){footer>.container{max-width:900px}}
-@media(max-width:575.98px){.footer-socials{justify-content:flex-start}}
+@media(max-width:575.98px){.footer-logo--seal{width:min(150px,100%)}.footer-socials{justify-content:flex-start}}
 
 /* Shared service navigation. */
 .navbar .dropdown-menu{border-color:#d9e5e1;border-radius:2px;box-shadow:0 8px 24px rgba(0,63,59,.1)}
