@@ -39,7 +39,7 @@ const estimateTriggers = [...document.querySelectorAll('[data-estimate-trigger]'
 
 if (estimateTriggers.length) {
   // Replace this public key after registering the production domain in Google reCAPTCHA.
-  const RECAPTCHA_SITE_KEY = 'YOUR_RECAPTCHA_SITE_KEY';
+  const RECAPTCHA_SITE_KEY = '6Lebm70tAAAAALsahrROR6W2EzmHHnRgUNLsF-jv';
   let recaptchaLoadPromise;
 
   const loadRecaptcha = () => {
